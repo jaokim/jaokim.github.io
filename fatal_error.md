@@ -1,5 +1,4 @@
-There you are, relaxing and enjoying a game of Minecraft, and suddenly
-> "A fatal error has been detected by the Java Runtime Environment"!
+There you are, relaxing and enjoying a game of Minecraft, and suddenly "A fatal error has been detected by the Java Runtime Environment"!
 
 # Fatal errors in Java applications
 A fatal error can be caused by any Java application, it's not specifically a Minecraft error. Trying to find a solution you want to look in the generated hs_err file.
