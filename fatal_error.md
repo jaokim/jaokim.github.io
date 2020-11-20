@@ -3,7 +3,8 @@ There you are, relaxing and enjoying a game of Minecraft, and suddenly "A fatal 
 # Fatal errors in Java applications
 A fatal error can be caused by any Java application. Trying to find a solution you want to look in the generated hs_err file.
 
-```
+
+<pre><code>
 #
 # A fatal error has been detected by the Java Runtime Environment:
 #
@@ -11,17 +12,17 @@ A fatal error can be caused by any Java application. Trying to find a solution y
 #
 # JRE version: Java(TM) SE Runtime Environment (8.0_172-b11) (build 1.8.0_172-b11)
 # Java VM: Java HotSpot(TM) 64-Bit Server VM (25.172-b11 mixed mode windows-amd64 compressed oops)
-# Problematic frame:
-# C [OpenAL64.dll+0x11066]
+</code><b style="color:red;"># Problematic frame:</b><code>
+</code><b style="color:red;"># C [OpenAL64.dll+0x11066]</b><code>
 #
 # Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
 #
 # If you would like to submit a bug report, please visit:
 # http://bugreport.java.com/bugreport/crash.jsp
-# The crash happened outside the Java Virtual Machine in native code.
-# See problematic frame for where to report the bug.
+</code><b style="color:red;"># The crash happened outside the Java Virtual Machine in native code.</b><code>
+</code><b style="color:red;"># See problematic frame for where to report the bug.</b><code>
 #
-```
+</pre>
 
 You might find it's something like a `SIGSEGV`, `SIGBUS`, or `EXCEPTION_ACCESS_VIOLATION`. Before blaming the Java Runtime Environment, and filing a bugreport on java.com, you might want to make sure it's really the Java Runtime causing the crash. Actually, just below the bugreport link, if you see the text: "`The crash happened outside the Java Virtual Machine in native code`", it's a clear sign that the crash was caused, not by the Java Virtual Machine, but rather some other piece of code, most likely a library of some kind. 
 
