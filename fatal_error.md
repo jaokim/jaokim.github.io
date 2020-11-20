@@ -46,14 +46,17 @@ Java Crash log:
 #
 ```
 
-You might find it's something like a SIGSEGV, SIGBUS, or EXCEPTION_ACCESS_VIOLATION. Before blaming the Java Runtime Environment, and filing a bugreport on java.com, you might want to make sure it's really the Java Runtime causing the crash. Actually, just below the bugreport link, if you see the text: "The crash happened outside the Java Virtual Machine in native code", it's a clear sign that the crash was caused, not by the Java Virtual Machine, but rather some other piece of code, most likely a library of some kind. The other string "See problematic frame for where to report the bug", suggests you should look further up in the hs_err file to pinpoint the problem. 
+You might find it's something like a `SIGSEGV`, `SIGBUS`, or `EXCEPTION_ACCESS_VIOLATION`. Before blaming the Java Runtime Environment, and filing a bugreport on java.com, you might want to make sure it's really the Java Runtime causing the crash. Actually, just below the bugreport link, if you see the text: "`The crash happened outside the Java Virtual Machine in native code`", it's a clear sign that the crash was caused, not by the Java Virtual Machine, but rather some other piece of code, most likely a library of some kind. 
+
+## The crash happened outside the Java Virtual Machine in native code
+Searching further in the hs_err file, you should see the string "`See problematic frame for where to report the bug`",  which suggests you should look further up in the file to pinpoint the problem. 
 
 ```
 # Problematic frame:
 # C [OpenAL64.dll+0x11066]
 ```
 
-Searching for the problematic frame, we find that the crash happened in the OpenAL64.dll, a library that Minecraft uses to handle the sound in the game. Googling this, points us into the Minecraft forums, and possibly a solution [2], which in this case consisted of an updated OpenAL64.dll. 
+Searching for the problematic frame, we find that the crash happened in the OpenAL64.dll, a library that Minecraft uses to handle the sound in the game. Googling this, points us into the Minecraft forums, and possibly a solution [2], which in this case consisted of an updated OpenAL64.dll.
 
 Looking at another bug report [3] with a fatal error while running Minecraft, we find the error being in FamHook.dll. 
 ```
