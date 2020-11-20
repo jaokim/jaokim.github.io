@@ -26,7 +26,10 @@ A fatal error can be caused by any Java application. Trying to find a solution y
 #
 AL lib: (EE) alc_cleanup: 1 device not closed
 Java HotSpot(TM) 64-Bit Server VM warning: Using incremental CMS is deprecated and will likely be removed in a future release
+```
+
 Java Crash log:
+```
 #
 # A fatal error has been detected by the Java Runtime Environment:
 #
