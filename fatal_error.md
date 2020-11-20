@@ -16,32 +16,6 @@ A fatal error can be caused by any Java application. Trying to find a solution y
 #
 # Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
 #
-# An error report file with more information is saved as:
-# C:\java\dir\mod\run\hs_err_pid2372.log
-#
-# If you would like to submit a bug report, please visit:
-# http://bugreport.java.com/bugreport/crash.jsp
-# The crash happened outside the Java Virtual Machine in native code.
-# See problematic frame for where to report the bug.
-#
-AL lib: (EE) alc_cleanup: 1 device not closed
-Java HotSpot(TM) 64-Bit Server VM warning: Using incremental CMS is deprecated and will likely be removed in a future release
-```
-
-Java Crash log:
-```
-#
-# A fatal error has been detected by the Java Runtime Environment:
-#
-# EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000022051066, pid=2372, tid=0x00000000000017a0
-#
-# JRE version: Java(TM) SE Runtime Environment (8.0_172-b11) (build 1.8.0_172-b11)
-# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.172-b11 mixed mode windows-amd64 compressed oops)
-# Problematic frame:
-# C [OpenAL64.dll+0x11066]
-#
-# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
-#
 # If you would like to submit a bug report, please visit:
 # http://bugreport.java.com/bugreport/crash.jsp
 # The crash happened outside the Java Virtual Machine in native code.
