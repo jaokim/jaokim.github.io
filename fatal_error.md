@@ -1,7 +1,7 @@
 There you are, relaxing and enjoying a game of Minecraft, and suddenly "A fatal error has been detected by the Java Runtime Environment"!
 
 # Fatal errors in Java applications
-A fatal error can be caused by any Java application, it's not specifically a Minecraft error. Trying to find a solution you want to look in the generated hs_err file.
+A fatal error can be caused by any Java application. Trying to find a solution you want to look in the generated hs_err file.
 
 ```
 #
@@ -66,7 +66,7 @@ Looking at another bug report [3] with a fatal error while running Minecraft, we
 
 Further investigation on this matter, reveals it isn't directly tied to a Minecraft component, but rather a parental control software [4] presumably running in the background hooking into the network stack, disturbing Minecraft. I haven't investigated further, and the error could be either the parental control software doing something wrong, or Minecraft not handling something correctly. In my next blog post, I'll however take a look at a fatal crash, not caused by the Java Virtual Machine, but in the Java runtime.
 
-Summary
+# Summary
 When the Java Runtime Environment crashes, it can be due to external components, either something directly used by the running software, or indirectly related, for instance virus protection or other system software. In these cases it is unlikely that a bugreport to java.com will help. The first step to finding the real culprit, is to look in the problematic frame in the hs_err-file.
 
 [2] https://www.minecraftforum.net/forums/archive/legacy-support/1737178-openal-access-violation
