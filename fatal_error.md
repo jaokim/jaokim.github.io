@@ -4,8 +4,7 @@ There you are, relaxing and enjoying a game of Minecraft, and suddenly "A fatal 
 A [fatal error can be caused by any Java application][1]. Trying to find a solution you want to look in the generated hs_err file.
 
 
-<pre><code>
-#
+<pre><code>#
 # A fatal error has been detected by the Java Runtime Environment:
 #
 # EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000022051066, pid=2372, tid=0x00000000000017a0
