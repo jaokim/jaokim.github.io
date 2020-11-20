@@ -2,7 +2,7 @@ There you are, relaxing and enjoying a game of Minecraft, and suddenly, "A fatal
 
 A fatal error can be caused by any Java application, it's not specifically a Minecraft error. Trying to find a solution you want to look in the generated hs_err file.
 
-
+```
 #
 # A fatal error has been detected by the Java Runtime Environment:
 #
@@ -43,17 +43,22 @@ Java Crash log:
 # The crash happened outside the Java Virtual Machine in native code.
 # See problematic frame for where to report the bug.
 #
-
+```
 
 You might find it's something like a SIGSEGV, SIGBUS, or EXCEPTION_ACCESS_VIOLATION. Before blaming the Java Runtime Environment, and filing a bugreport on java.com, you might want to make sure it's really the Java Runtime causing the crash. Actually, just below the bugreport link, if you see the text: "The crash happened outside the Java Virtual Machine in native code", it's a clear sign that the crash was caused, not by the Java Virtual Machine, but rather some other piece of code, most likely a library of some kind. The other string "See problematic frame for where to report the bug", suggests you should look further up in the hs_err file to pinpoint the problem. 
+
+```
 # Problematic frame:
 # C [OpenAL64.dll+0x11066]
+```
 
 Searching for the problematic frame, we find that the crash happened in the OpenAL64.dll, a library that Minecraft uses to handle the sound in the game. Googling this, points us into the Minecraft forums, and possibly a solution [2], which in this case consisted of an updated OpenAL64.dll. 
 
 Looking at another bug report [3] with a fatal error while running Minecraft, we find the error being in FamHook.dll. 
+```
 # Problematic frame:
 # C [FamHook.dll+0x1704]
+```
 
 Further investigation on this matter, reveals it isn't directly tied to a Minecraft component, but rather a parental control software [4] presumably running in the background hooking into the network stack, disturbing Minecraft. I haven't investigated further, and the error could be either the parental control software doing something wrong, or Minecraft not handling something correctly. In my next blog post, I'll however take a look at a fatal crash, not caused by the Java Virtual Machine, but in the Java runtime.
 
