@@ -12,18 +12,18 @@ A fatal error can be caused by any Java application. Trying to find a solution y
 #
 # JRE version: Java(TM) SE Runtime Environment (8.0_172-b11) (build 1.8.0_172-b11)
 # Java VM: Java HotSpot(TM) 64-Bit Server VM (25.172-b11 mixed mode windows-amd64 compressed oops)
-</code><b style="color:red;"># Problematic frame:</b>
-<b style="color:red;"># C [OpenAL64.dll+0x11066]</b><code>
+</code><b style="color: red;"># Problematic frame:</b>
+<b style="color: red;"># C [OpenAL64.dll+0x11066]</b><code>
 #
 # Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
 #
 # If you would like to submit a bug report, please visit:
 # http://bugreport.java.com/bugreport/crash.jsp
-</code><b style="color:red;"># The crash happened outside the Java Virtual Machine in native code.</b>
-<b style="color:red;"># See problematic frame for where to report the bug.</b>
+</code><b style="color: red;"># The crash happened outside the Java Virtual Machine in native code.</b>
+<b style="color: red;"># See problematic frame for where to report the bug.</b>
 #
 </pre>
-You might find it's something like a `SIGSEGV`, `SIGBUS`, or `EXCEPTION_ACCESS_VIOLATION`. Before blaming the Java Runtime Environment, and filing a bugreport on java.com, you might want to make sure it's really the Java Runtime causing the crash. Actually, just below the bugreport link, if you see the text: "`The crash happened outside the Java Virtual Machine in native code`", it's a clear sign that the crash was caused, not by the Java Virtual Machine, but rather some other piece of code, most likely a library of some kind. 
+You might find it's something like a `SIGSEGV`, `SIGBUS`, or `EXCEPTION_ACCESS_VIOLATION`. Before blaming the Java Runtime Environment, and filing a bugreport on java.com, you want to make sure it's really the Java Runtime causing the crash. Actually, just below the bugreport link, if you see the text: "`The crash happened outside the Java Virtual Machine in native code`", it's a clear sign that the crash was caused, not by the Java Virtual Machine, but rather some other piece of code, most likely a library of some kind. 
 
 ## The crash happened outside the Java Virtual Machine in native code
 Searching further in the hs_err file, you should see the string "`See problematic frame for where to report the bug`",  which suggests you should look further up in the file to pinpoint the problem. 
