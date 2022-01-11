@@ -2,7 +2,7 @@
 layout: post
 title: StackOverflowError
 excerpt: "Given a StackOverflowError, there's likely not enough stack to do anything about it"
-author: [JoakimNordstrom]
+author: [Joakim]
 date:   2022-01-07 11:52:25 +0100
 categories: HotSpot StackOverflow
 ---
