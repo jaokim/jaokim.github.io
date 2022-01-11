@@ -3,7 +3,7 @@ layout: post
 title: You don't gotta catch 'em all
 excerpt: "Given a StackOverflowError, there's likely not enough stack to do anything about it."
 author: [Joakim]
-date:   2022-01-07 11:52:25 +0100
+date:   2022-01-11
 tags: hotspot stackoverflow exceptions
 splash-url: /images/stackoverflow-img/josh-calabrese-fXigBxcZXWc-unsplash.jpg
 ---
