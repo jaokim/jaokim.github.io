@@ -7,7 +7,7 @@
   <article>
     <p>
         <a href="{{ post.url }}">
-        <img src="{{post.splash-url}}" style="float:left; margin: 0px 10px 0px 0px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);" width="35%"/>
+        <img src="{{post.image}}" style="float:left; margin: 0px 10px 0px 0px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);" width="35%"/>
         <h2>
             {{ post.title }}
         </h2>
