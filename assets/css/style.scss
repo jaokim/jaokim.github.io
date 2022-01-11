@@ -1,0 +1,24 @@
+---
+---
+
+@import "jekyll-theme-minimal";
+
+a:hover { color: #900; font-weight: inherit; }
+a:focus { color: #069; font-weight: inherit; }
+
+svg.svg-icon {
+    height: 16px; 
+    width: 16px; 
+    padding: 5px 3px 2px 5px;
+    vertical-align: text-bottom;
+}
+
+.social-media-list {
+    display: table;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+section {
+    width: 600px;
+}

@@ -1,13 +1,12 @@
 ---
 layout: post
-title: StackOverflowError
-excerpt: "Given a StackOverflowError, there's likely not enough stack to do anything about it"
+title: You don't gotta catch 'em all
+excerpt: "Given a StackOverflowError, there's likely not enough stack to do anything about it."
 author: [Joakim]
 date:   2022-01-07 11:52:25 +0100
-categories: HotSpot StackOverflow
+tags: hotspot stackoverflow exceptions
+splash-url: /images/stackoverflow-img/josh-calabrese-fXigBxcZXWc-unsplash.jpg
 ---
-
-# You don't gotta catch 'em all
 
 There are a few throwables the JVM might throw at you, that you shouldn't try to catch. Basically, "a reasonable application" ([as the docs say](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Error.html)) shouldn't normally try to catch any throwable that is a java.lang.Error, because it indicates a serious problem with the JVM. In this post I'll take a closer look at the java.lang.StackOverflowError, and try to motivate why it's a bad idea to try to catch these.
 
@@ -69,7 +68,7 @@ Deciphering the source, `main` calls `m2`, which calls itself until the stack ov
   <p align="center">
     <img alt="Diagram showing the programs call flow." 
          src="/images/stackoverflow-img/source-path.png" 
-         style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5);" width="90%"/><br/>
+         style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5);" width="100%"/><br/>
          <span>Figure 1. Visualization of the <i>hypothetical</i> program execution, without the <code>println</code>. One StackOverflowError (SOFE) is thrown. The observant reader might notice how fuzzy I made the stack limit here... (Hint: this picture is not the truth.)</span>
   <br>
   </p>
@@ -123,7 +122,7 @@ The first StackOverflowError is thrown when the call to `m2` overflows the stack
 <p align="center">
 <img alt="Diagram showing the program's call flow." 
      src="/images/stackoverflow-img/actual-source-path.png" 
-     style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5);" width="75%"/><br/>
+     style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5);" width="100%"/><br/>
      <span>Figure 2. A more accurate visualization of the program execution. Notice the stack limit is more accurately limited, clearly illustrating the behaviour; neither <code>m2</code>'s call to itself nor the <code>m1</code> call fits the stack, resulting in a StackOverflowError.</span>
 </p>
 
@@ -165,7 +164,7 @@ The first StackOverflowError is thrown from `m2` when the stack is full. On retu
 <p align="center">
 <img alt="Diagram showing the program's call flow." 
      src="/images/stackoverflow-img/actual-source-println-path.png" 
-     style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5);" width="90%"/><br/>
+     style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5);" width="100%"/><br/>
      <span>Figure 3. Visualization of the program execution. As can be seen, the println requires a few stack frames, thus, generating quite a few StackOverflowErrors before enough stack is freed and the message is successfully printed.</span>
 </p>
 
