@@ -3,6 +3,35 @@
 
 @import "jekyll-theme-minimal";
 
+/* Main override styles */
+body {
+  color: #444;
+}
+
+code, pre {
+    font-family: Courier New, monospace;
+    font-size: 14px;
+}
+
+/* Styles for index page that lists all articles */
+.index_img {
+  float: left;
+  margin: 10px 20px 10px 10px; 
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.index_article {
+  cursor: pointer;
+}
+.index_article {
+  cursor: pointer;
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.index_excerpt {
+}
+
 a:hover { color: #900; font-weight: inherit; }
 a:focus { color: #069; font-weight: inherit; }
 
