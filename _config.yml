@@ -26,6 +26,9 @@ linkedin_username: joakimnordstrom
 # Build settings
 markdown: kramdown
 
+kramdown:
+    parse_block_html: false
+
 #theme: minima
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
@@ -33,6 +36,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
   - jekyll-paginate
+  - jekyll-toc
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
