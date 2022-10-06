@@ -166,4 +166,4 @@ When the JVM crashes, it can write a core dump that contains details of the cras
 Usually, most developers don't need the core dump, but should instead focus on the `hs_err` file to first find which component caused the crash.
 <br />
 <br />
-The example code used to crash, is [available on my GitHub](https://github.com/jaokim/inside-java-dumpster).
+The example code used to crash, is [available on my GitHub](https://github.com/jaokim/code.jaokim.github.io/tree/deciphering-the-stacktrace/deciphering-the-stacktrace).

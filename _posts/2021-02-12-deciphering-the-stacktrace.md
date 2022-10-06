@@ -20,7 +20,7 @@ In this post we will be looking at crash logs, the `hs_err` file, that is genera
 ## Divide and crash
 For this post I've created an example consisting of a Java loop, dividing a constant by a decreasing denominator, eventually resulting in a division by zero. The code takes a few twists and turns to get a more interesting stack trace. It consists of two Java classes: `Dumpster` and `Divider`; `Dumpster` loops, and calls `Divider.do_div()` for each iteration. `Divider` makes the call to the native JNI library `libdump.so` that performs the division. 
 
-An abbreviated version can be seen below. Full code with build and run instructions are available on my [GitHub](https://github.com/jaokim/inside-java-dumpster).
+An abbreviated version can be seen below. Full code with build and run instructions are available on my [GitHub](https://github.com/jaokim/code.jaokim.github.io/tree/deciphering-the-stacktrace/deciphering-the-stacktrace).
 
 Java classes:
 ```java
@@ -220,3 +220,5 @@ However, we can enhance it a little into the table below, and hopefully, this po
 
 ## Further reading
 [The Java troubleshooting guide](https://docs.oracle.com/en/java/javase/15/troubleshoot/troubleshoot-system-crashes.html) is great if you need further assistance in troubleshooting a crashing Java application. This guide gives advices on how to determine what crashed, but also tips and possible workarounds.
+
+Full code with build and run instructions for the code is available on my [GitHub](https://github.com/jaokim/code.jaokim.github.io/tree/deciphering-the-stacktrace/deciphering-the-stacktrace)
