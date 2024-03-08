@@ -5,7 +5,6 @@ excerpt: 'I held a talk on JFR at the Jfokus conference in february 2023'
 author: [JoakimNordstrom]
 image: /images/jfokus-programmers-guide-to-jdk-flight-recorder-img/jaokim-at-jfokus.png
 tags: ["Conference", "JFR"]
-blog_date: 2023-02-08
 ---
 
 This is a talk about JFR that I gave at <a href="http://www.jfokus.se">Jfokus</a> in february 2023.
