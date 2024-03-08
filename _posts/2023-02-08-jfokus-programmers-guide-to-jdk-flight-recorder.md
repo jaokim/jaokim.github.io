@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jfokus: Programmer's Guide to JDK Flight Recorder
+title: Jfokus Programmer's Guide to JDK Flight Recorder
 excerpt: 'I held a talk on JFR at the Jfokus conference in february 2023'
 author: [JoakimNordstrom]
 image: /images/jfokus-programmers-guide-to-jdk-flight-recorder-img/jaokim-at-jfokus.png
