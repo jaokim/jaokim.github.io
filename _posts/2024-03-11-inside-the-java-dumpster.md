@@ -18,7 +18,7 @@ blog_date: 2024-03-11
   </p>
 <br>
 
-Inside the Java Dumpster is my collective name for a web application written in Java. The application tries to mimic a real-world-like business application, with one obvious exception -- it is deliberately filled with bugs, anti-paterns, and resource hogs in order to assist in learning how to troubleshoot Java applications. Besides having issues and bugs, the application also showcases a few good things, like how to use custom JFR events, and make use of various JDK and JVM features. Like with any dumpster, you can find both good, and bad things.
+Inside the Java Dumpster is the collective name for a web application written to run on the JVM. The application tries to mimic a real-world-like business application, with one obvious exception -- it is <i>deliberately</i> filled with bugs, anti-patterns, and resource hogs in order to assist in learning how to troubleshoot Java applications. Besides having issues and bugs, the application also showcases a few good things, like how to use custom JFR events, and make use of various JDK, and JVM features. Like with any dumpster, you can find both good, and bad things.
 
 ## Workshop
 
