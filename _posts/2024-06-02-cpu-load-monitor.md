@@ -27,9 +27,9 @@ The functionality we want to implement is roughly this:
 ```
    while (true) {
       var cpuLoad = getCpuLoad();
-	  if (cpuLoad > 0.6) {
-	     dumpJFR();
-	  }
+      if (cpuLoad > 0.6) {
+        dumpJFR();
+     }
    }
 ```
 
@@ -64,22 +64,6 @@ The `RecordingStream` API has a `dump` method so we can simply dump the recordin
 If we only ran this code as is, we would indeed get a `recording.jfr` file. However, with only the `jdk.CPULoad` event being enabled, we would only get `jdk.CPULoad` events in the recording. If the application was started with the JVM argument `-XX:StartFlightRecording=name=default`, a recording with all the default events would be dumped.
 
 This highlights one important thing to notice when working with JFR and recordings -- there is really only one instance of the flight recorder in each JVM, despite how many recordings we might have running. This is also apparent when we issue the `dump()` method on the stream. The name is not save(), or something friendlier, because it really does dump the entirety of what the flight recorder has in its storage. This means that if we were to do a new dump() right after, it'd be virtually empty.
-
-When starting a recording using RecordingStream we can tell it to use one of the built-in configurations, i.e. `default.jfc`, or `profile.jfc` in `$JDK_HOME/lib/jfr/`:
-
-```
-final Configuration config = Configuration.getConfiguration("default");
-RecordingStream stream = new RecordingStream(config);
-```
-
-Or we can load a custom .jfc file using the `create()` method:
-
-```
-final Configuration config = Configuration.create(Path.of("/home/app/custom.jfc"));
-RecordingStream stream = new RecordingStream(config);
-```
-
-With either of these approaches we'd start a recording with the set of events configured in either configuration.
 
 # CPU load monitoring in JDK 8 
 As mentioned, the JFR recording stream came first in JDK 14. If you're still stuck on JDK 8, are you out of luck? No, for this particular use-case, where you want to monitor CPU usage, you can use the javax Management API. It's a wee bit more complex, and less intuitive -- but it works.
@@ -137,5 +121,6 @@ Although requiring quite a bit of ceremony, its not overly complex. You get the 
 
 
 # The whole packaged solution
-The resulting [code is available on my github](https://github.com/jaokim/code.jaokim.github.io/tree/main/cpu-load-monitor). With JDK 8, and later JDKs having different APIs (technically later JDKs can of course use the JDK 8 API), I've packaged the entire solution in a Multi-JAR. Multi-JAR allows for different Java source files targetting different JDK releases to be included in the same JAR; if executed on JDK 8, or earlier, the standard "classes" dir in the JAR are used, but if it's running with a later JDK, classes are also loaded from that JDK-specific classes dir in the JAR, f.i. "classes-17".
+With the solution using one API for JDK 8, and another one for later JDKs, I've packaged the entire solution in a Multi-JAR. Multi-JAR allows for different Java source files targetting different JDK releases to be included in the same JAR; if executed on JDK 8, or earlier, the standard "classes" dir in the JAR are used, but if it's running with a later JDK, classes are also loaded from that JDK-specific classes dir in the JAR, f.i. "classes-17".
 
+For more details on the entire solution, the resulting [code is available on my github](https://github.com/jaokim/code.jaokim.github.io/tree/main/cpu-load-monitor).
