@@ -21,6 +21,22 @@ blog_date: 2024-06-02
   
 Quite a while ago I got a question [on ~~Twitter~~ X](https://twitter.com/csyangchsh/status/1567753686218309633?s=20&t=Or4VN7aRJI8zxJLD8NCqLA) asking whether its possible to trigger a flight recording when the CPU usage goes up. The tweeter mentioned it is possible to accomplish this using JDK Mission Control -- but that requires that you always have an instance of JDK Mission Control running with access to the JVM. Enter instead the JDK Flight Recorder's [`RecordingStream`](https://docs.oracle.com/en/java/javase/14/docs/api/jdk.jfr/jdk/jfr/consumer/RecordingStream.html), available since JDK 14. With this you can easily hook into the JFR stream of events.
 
+# Monitoring the CPU Load
+The functionality we want to implement is roughly this:
+
+```
+   while (true) {
+      var cpuLoad = getCpuLoad();
+	  if (cpuLoad > 0.6) {
+	     dumpJFR();
+	  }
+   }
+```
+
+The resulting [code is available on my github](https://github.com/jaokim/code.jaokim.github.io/tree/main/cpu-load-monitor). The solution consist of both JDK 8, and >JDK 14 solution packaged in a Multi-JAR (meaning the same JAR can be used on both JDK 8 and above, with later versions taking advatange of newer APIs).
+
+## Getting the CPU Load
+We open a recording stream from the current JVM, enable the `jdk.CPULoad` event to be triggered every 5 seconds. For each CPU load event the "processTotal" attribute is checked, and when it exceeds 60% the default JFR recording is written to disk. 
 
 ``` java
     try (RecordingStream stream = new RecordingStream()) {
@@ -30,15 +46,14 @@ Quite a while ago I got a question [on ~~Twitter~~ X](https://twitter.com/csyang
         float cpuLoad = event.getFloat("processTotal");
 
         if(cpuLoad > 0.6) {
-          dumpDefaultRecording("recording.jfr");
+          dumpJFR("recording.jfr");
         }
       });
       stream.start();
     }
 ```
 
-We open a recording stream from the current JVM, enable the "jdk.CPULoad" to be triggered every 5 seconds. For each CPU load event the "processTotal" attribute is checked, and when it exceeds 60% the default JFR recording is written to disk. 
-
+## Writing the JFR Recording
 The `RecordingStream` API has a `dump` method so we can simply dump the recording to disk.
 
 ```
@@ -47,46 +62,28 @@ The `RecordingStream` API has a `dump` method so we can simply dump the recordin
         }
 ```
 
-Now, if this was the only recording we had running, we would indeed get a `recording.jfr` file. However, with only the `jdk.CPULoad` being enabled, we would only get `jdk.CPULoad` events in the recording. 
+If we only ran this code as is, we would indeed get a `recording.jfr` file. However, with only the `jdk.CPULoad` event being enabled, we would only get `jdk.CPULoad` events in the recording. If the application was started with the JVM argument `-XX:StartFlightRecording=name=default`, a recording with all the default events would be dumped.
 
-## It's possible to tell the `RecordingStream` to use a specific configuration.
+This highlights one important thing to notice when working with JFR and recordings -- there is really only one instance of the flight recorder in each JVM, despite how many recordings we might have running. This is also apparent when we issue the `dump()` method on the stream. The name is not save(), or something friendlier, because it really does dump the entirety of what the flight recorder has in its storage. This means that if we were to do a new dump() right after, it'd be virtually empty.
 
-When starting a recording stream we can tell it to use one of the built-in configurations, i.e. `default.jfc`, or `profile.jfc` in `$JDK_HOME/lib/jfr/`:
+When starting a recording using RecordingStream we can tell it to use one of the built-in configurations, i.e. `default.jfc`, or `profile.jfc` in `$JDK_HOME/lib/jfr/`:
 
 ```
 final Configuration config = Configuration.getConfiguration("default");
 RecordingStream stream = new RecordingStream(config);
 ```
 
-Or we can load a custom .jfc file using the create() method:
+Or we can load a custom .jfc file using the `create()` method:
 
 ```
 final Configuration config = Configuration.create(Path.of("/home/app/custom.jfc"));
 RecordingStream stream = new RecordingStream(config);
 ```
 
-With either of these apporaches we'd start a recording with the set of events configured in either configuration. So for the `default` configuration we'd get all the events we'd expect. 
+With either of these approaches we'd start a recording with the set of events configured in either configuration.
 
-However, depending on your use-case, this might not be the most flexible solution, since the configuration would be hardcoded. For this specific use-case, where we want to create some sort of plugin, it'd be better to for instance start a recording at startup, using `-XX:StartFlightRecording=name=default`. This would then mean we'd get this default recording dumped, and we could just use our "unconfigured" recording stream. 
-
-```
-java -XX:StartFlightRecording=name=default -jar cpuloadmonitor.jar
-```
-
-```
-RecordingStream stream = new RecordingStream();
-```
-
-This highlights one important thing to notice when working with JFR and recordings -- there is really only one instance of the flight recorder in each JVM, despite how many recordings we might have running. This is also apparent when we issue the `dump()` method on the stream. The name is not save(), or something friendlier, because it really does dump the entirety of what the flight recorder has in its storage. This means that if we were to do a new dump() right after, it'd be empty. It also means that if we have a few different recordings started, and dump one, the other's would be be empty if dumped too. 
-
-
-
-
-
-This code has to be run in the same JVM which you want to monitor, so you have to start this in a thread in your application. There is also a `RemoteRecordingStream` which you can use to monitor a JVM on another server. But that won't be covered here. That's material for a coming blog post.
-
-# Being fancy on JDK 8 
-As mentioned, the JFR recording stream came first in JDK 14. For this particular use-case, where you want to monitor CPU usage, you can use the javax Management API. It's a wee bit more complex, and less intuitive -- but it works.
+# CPU load monitoring in JDK 8 
+As mentioned, the JFR recording stream came first in JDK 14. If you're still stuck on JDK 8, are you out of luck? No, for this particular use-case, where you want to monitor CPU usage, you can use the javax Management API. It's a wee bit more complex, and less intuitive -- but it works.
 
 
 ## Getting the CPU load
@@ -108,6 +105,21 @@ public class CPUMonitor {
 
 You get the Platform MBean Server, retrieve the operating system object, which has the `ProcessCpuLoad` attribute showing the CPU load.
 
+With the JFR stream API its easy to define how often the event should be created with the `enable(event).withPeriod(period)` call. In JDK 8 we can instead manually poll the CPU load using a `ScheduledExecutorService`.
+
+``` java
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+    executor.scheduleAtFixedRate(()->{
+      double cpuLoad = getCpuLoad();
+
+      if(cpuLoad > 0.6) {
+        dumpJFR("recording.jfr");
+      }
+
+    }, 0, 5, TimeUnit.SECONDS);
+```
+
+
 ## Writing the JFR recording
 Using a JFR stream in later JDK versions its easy to dump a recording. In JDK 8 you can instead invoke the `jfrDump` diagnostics command. 
 
@@ -125,21 +137,5 @@ Although requiring quite a bit of ceremony, its not overly complex. You get the 
 ```
 
 
-
-## Tying it all together
-With the JFR stream API its easy to define how often you want to get a certain event with the `enable(event).withPeriod(period)` call. In JDK 8 you can instead manually poll the CPU load using a `ScheduledExecutorService`.
-
-``` java
-ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-    executor.scheduleAtFixedRate(()->{
-      double cpuLoad = getCpuLoad();
-
-      if(cpuLoad > 0.6) {
-        dumpJFR("recording.jfr");
-      }
-
-    }, 0, 5, TimeUnit.SECONDS);
-```
-
-
-java -XX:StartFlightRecording=name=default,duration=15m,filename=diagnosis-j17.jfr -jar C:/Users/JSNORDST/dev/git/github.com/jaokim/inside-java-dumpster/Examples/target/Examples-1.0.jar
+# The whole packaged solution
+With JDK 8, and later JDKs having different APIs (technically later JDKs can ofcourse use the JDK 8 API), I've packaged the entire solution in a Multi-JAR. Multi-JAR allows for different Java source files targetting different JDK releases to be included in the same JAR; if executed on JDK 8, or earlier, the standard "classes" dir in the JAR are used, but if it's running with a later JDK, classes are also loaded from that JDK-specific classes dir in the JAR, f.i. "classes-17".
