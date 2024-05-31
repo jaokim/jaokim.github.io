@@ -33,7 +33,6 @@ The functionality we want to implement is roughly this:
    }
 ```
 
-The resulting [code is available on my github](https://github.com/jaokim/code.jaokim.github.io/tree/main/cpu-load-monitor). The solution consist of both JDK 8, and >JDK 14 solution packaged in a Multi-JAR (meaning the same JAR can be used on both JDK 8 and above, with later versions taking advatange of newer APIs).
 
 ## Getting the CPU Load
 We open a recording stream from the current JVM, enable the `jdk.CPULoad` event to be triggered every 5 seconds. For each CPU load event the "processTotal" attribute is checked, and when it exceeds 60% the default JFR recording is written to disk. 
@@ -138,4 +137,5 @@ Although requiring quite a bit of ceremony, its not overly complex. You get the 
 
 
 # The whole packaged solution
-With JDK 8, and later JDKs having different APIs (technically later JDKs can ofcourse use the JDK 8 API), I've packaged the entire solution in a Multi-JAR. Multi-JAR allows for different Java source files targetting different JDK releases to be included in the same JAR; if executed on JDK 8, or earlier, the standard "classes" dir in the JAR are used, but if it's running with a later JDK, classes are also loaded from that JDK-specific classes dir in the JAR, f.i. "classes-17".
+The resulting [code is available on my github](https://github.com/jaokim/code.jaokim.github.io/tree/main/cpu-load-monitor). With JDK 8, and later JDKs having different APIs (technically later JDKs can of course use the JDK 8 API), I've packaged the entire solution in a Multi-JAR. Multi-JAR allows for different Java source files targetting different JDK releases to be included in the same JAR; if executed on JDK 8, or earlier, the standard "classes" dir in the JAR are used, but if it's running with a later JDK, classes are also loaded from that JDK-specific classes dir in the JAR, f.i. "classes-17".
+
