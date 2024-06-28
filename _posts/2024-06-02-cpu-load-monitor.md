@@ -6,7 +6,7 @@ excerpt: 'Triggering events on high CPU load'
 author: [JoakimNordstrom]
 tags: ["HotSpot", "JFR", "Flight Recorder", "CPU load"]
 image: /images/cpu-load-monitor-img/alex-motoc-P43VRz8fLWs-unsplash.jpg
-hidden: true
+draft: true
 blog_date: 2024-06-02
 ---
 <br>
@@ -35,14 +35,14 @@ The functionality we want to implement is roughly this:
 
 
 ## Getting the CPU Load
-We open a recording stream from the current JVM, enable the `jdk.CPULoad` event to be triggered every 5 seconds. For each CPU load event the "processTotal" attribute is checked, and when it exceeds 60% the default JFR recording is written to disk. 
+We open a recording stream from the current JVM, enable the `jdk.CPULoad` event to be triggered every 5 seconds. For each CPU load event the "systemTotal" attribute is checked, and when it exceeds 60% the default JFR recording is written to disk. 
 
 ``` java
     try (RecordingStream stream = new RecordingStream()) {
       stream.enable("jdk.CPULoad").withPeriod(Duration.ofSeconds(5));
       stream.onEvent("jdk.CPULoad", (event) -> {
 
-        float cpuLoad = event.getFloat("processTotal");
+        float cpuLoad = event.getFloat("systemTotal");
 
         if(cpuLoad > 0.6) {
           dumpJFR("recording.jfr");
@@ -65,11 +65,11 @@ If we only ran this code as is, we would indeed get a `recording.jfr` file. Howe
 
 This highlights one important thing to notice when working with JFR and recordings -- there is really only one instance of the flight recorder in each JVM, despite how many recordings we might have running. This is also apparent when we issue the `dump()` method on the stream. The name is not save(), or something friendlier, because it really does dump the entirety of what the flight recorder has in its storage. This means that if we were to do a new dump() right after, it'd be virtually empty.
 
-# CPU load monitoring in JDK 8 
-As mentioned, the JFR recording stream came first in JDK 14. If you're still stuck on JDK 8, are you out of luck? No, for this particular use-case, where you want to monitor CPU usage, you can use the javax Management API. It's a wee bit more complex, and less intuitive -- but it works.
+# CPU Load Monitoring in JDK 8 
+As mentioned, the JFR recording stream was added to JDK 14. If you're still stuck on JDK 8, are you out of luck? No, for this particular use-case, where you want to monitor CPU usage, you can use the javax Management API. It's a wee bit more complex, and less intuitive -- but it works.
 
 
-## Getting the CPU load
+## Getting the CPU Load
 ``` java
 import java.lang.management.ManagementFactory;
 import javax.management.MBeanServer;
@@ -79,14 +79,14 @@ public class CPUMonitor {
   public double getCpuLoad() throws Exception {
     final MBeanServer mrBean  = ManagementFactory.getPlatformMBeanServer();
     final ObjectName  os      = ObjectName.getInstance("java.lang:type=OperatingSystem");
-    // Get wanted attribute; ProcessCpuLoad or SystemCpuLoad
-    final Double cpuLevel = (double)mrBean.getAttribute(os, "ProcessCpuLoad");
+    // Get wanted attribute; SystemCpuLoad or ProcessCpuLoad
+    final Double cpuLevel = (double)mrBean.getAttribute(os, "SystemCpuLoad");
     return cpuLevel;
   }
 }
 ```
 
-You get the Platform MBean Server, retrieve the operating system object, which has the `ProcessCpuLoad` attribute showing the CPU load.
+You get the Platform MBean Server, retrieve the operating system object, which has the `SystemCpuLoad` attribute showing the CPU load.
 
 With the JFR stream API its easy to define how often the event should be created with the `enable(event).withPeriod(period)` call. In JDK 8 we can instead manually poll the CPU load using a `ScheduledExecutorService`.
 
@@ -120,7 +120,41 @@ Although requiring quite a bit of ceremony, its not overly complex. You get the 
 ```
 
 
-# The whole packaged solution
+# Some notes regarding CPU load measuring
+
+https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad--
+
+getSystemCpuLoad
+double getSystemCpuLoad()
+Returns the "recent cpu usage" for the whole system. This value is a double in the [0.0,1.0] interval. A value of 0.0 means that all CPUs were idle during the recent period of time observed, while a value of 1.0 means that all CPUs were actively running 100% of the time during the recent period being observed. All values betweens 0.0 and 1.0 are possible depending of the activities going on in the system. If the system recent cpu usage is not available, the method returns a negative value.
+Returns:
+the "recent cpu usage" for the whole system; a negative value if not available.
+
+
+The Javadoc for getSystemCpuLoad states it returns an average "over the recent time period being observed". This means that the value returned is based on _when_ you called this method _the last time_; getSystemCpuLoad is not an idempotent call. The last value is global for the entire JVM, so you can't query the CPU load from different threads or places at different times, and expect to get values that are deterministic.
+
+|-----|----                    |---         |
+|Time |   Consumer 1  |           |    Consumer 2|
+|     |   CPU Load interval |    CPU Load interval |
+|10:00|   5        
+|10:01|
+|10:02|
+|10:03|
+|10:04|
+|10:05|   5
+|10:06|
+|10:07|                          |  2  |
+|10:08|
+|10:09|
+|10:10|   3 
+
+The example shows how one consumer tries to repeatedly read the CPU load during the last 5 seconds, when a second consumer comes in and reads the CPU load after 2 seconds, manifesting the observer effect, leaving only 3 seconds for consumer 1.
+
+Worth noting, is that the JFR CPU load event has its own state. Since the JFR CPU load event is also triggered using the JFR API, it is easier to assert which resolution you get -- there are no other possibilities to query the JFR event, whereas the `getSystemCpuLoad` can in theory be called unnoticed by other code.
+
+
+
+# The Packaged Solution
 With the solution using one API for JDK 8, and another one for later JDKs, I've packaged the entire solution in a Multi-JAR. Multi-JAR allows for different Java source files targetting different JDK releases to be included in the same JAR; if executed on JDK 8, or earlier, the standard "classes" dir in the JAR are used, but if it's running with a later JDK, classes are also loaded from that JDK-specific classes dir in the JAR, f.i. "classes-17".
 
 For more details on the entire solution, the resulting [code is available on my github](https://github.com/jaokim/code.jaokim.github.io/tree/main/cpu-load-monitor).
