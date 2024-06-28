@@ -4,6 +4,9 @@ layout: default
 
 
  {% for post in site.posts %}
+  {% if post.draft %}
+    {% continue %}
+  {% endif %}
   <article >
     <div class="index_article" onclick="location.href='{{ post.url }}'">
       <img class="index_img" src="{{post.image}}" width="35%">
