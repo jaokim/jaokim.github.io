@@ -133,24 +133,25 @@ the "recent cpu usage" for the whole system; a negative value if not available.
 
 The Javadoc for getSystemCpuLoad states it returns an average "over the recent time period being observed". This means that the value returned is based on _when_ you called this method _the last time_; getSystemCpuLoad is not an idempotent call. The last value is global for the entire JVM, so you can't query the CPU load from different threads or places at different times, and expect to get values that are deterministic.
 
-|-----|----                    |---         |
-|Time |   Consumer 1  |           |    Consumer 2|
+
+|Time |   Consumer 1        |    Consumer 2        |
 |     |   CPU Load interval |    CPU Load interval |
+|-----|----                 |---                   |
 |10:00|   5        
-|10:01|
-|10:02|
-|10:03|
-|10:04|
+|10:01|   .
+|10:02|   .
+|10:03|   .
+|10:04|   .
 |10:05|   5
-|10:06|
-|10:07|                          |  2  |
-|10:08|
-|10:09|
+|10:06|                      | .   |
+|10:07|                      |  2  |
+|10:08|   .
+|10:09|   .
 |10:10|   3 
 
 The example shows how one consumer tries to repeatedly read the CPU load during the last 5 seconds, when a second consumer comes in and reads the CPU load after 2 seconds, manifesting the observer effect, leaving only 3 seconds for consumer 1.
 
-Worth noting, is that the JFR CPU load event has its own state. Since the JFR CPU load event is also triggered using the JFR API, it is easier to assert which resolution you get -- there are no other possibilities to query the JFR event, whereas the `getSystemCpuLoad` can in theory be called unnoticed by other code.
+Worth noting, is that the JFR CPU load event has its own state. Since the JFR CPU load event is also triggered using the JFR API, it is easier to assert which resolution you get -- there are no other possibilities to query the JFR event, whereas the `getSystemCpuLoad` can in theory be called unnoticed by other code, or even from another JVM over JMX.
 
 
 
