@@ -12,6 +12,8 @@ This is my talk about JFR that I gave at <a href="https://archive.oredev.org/202
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/GQGbRWgRBkU?si=xliqAuz57TtWoycv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+<a href="/images/oredev-conference-talk-on-jfr-img/programmers-guide-to-jfr-oredev.pdf">Slides</a>
+
 ## Synopsis
 
 #### Key takeaways
