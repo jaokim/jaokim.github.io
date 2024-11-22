@@ -3,6 +3,7 @@ layout: post
 title: A crash happened outside the Java Virtual Machine
 author: [JoakimNordstrom]
 tags: ["HotSpot", "Serviceability"]
+category: java
 excerpt: 'There you are, relaxing and enjoying a game of Minecraft, and suddenly "A fatal error has been detected by the Java Runtime Environment"! To find cues, you want to look in the HotSpot error log.'
 
 image: /images/crash-outside-the-jvm-img/cindy-tang-ob-hsLNxYPc-unsplash.jpg
