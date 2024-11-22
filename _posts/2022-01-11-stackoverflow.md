@@ -4,8 +4,9 @@ title: You don't gotta catch 'em all
 excerpt: "Given a StackOverflowError, there's likely not enough stack to do anything about it."
 author: [Joakim]
 date:   2022-01-11
-tags: hotspot stackoverflow exceptions
-image: /images/stackoverflow-img/josh-calabrese-fXigBxcZXWc-unsplash.jpg
+tags: HotSpot
+category: java
+image: /images/stackoverflow-img/josh-calabrese-fXigBxcZXWc-unsplash-thumb.jpg
 ---
 
 There are a few throwables the JVM might throw at you, that you shouldn't try to catch. Basically, "a reasonable application" ([as the docs say](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Error.html)) shouldn't normally try to catch any throwable that is a java.lang.Error, because it indicates a serious problem with the JVM. In this post I'll take a closer look at the java.lang.StackOverflowError, and try to motivate why it's a bad idea to try to catch these.

@@ -4,9 +4,10 @@ layout: post
 title: CPU load monitor
 excerpt: 'Triggering events on high CPU load'
 author: [JoakimNordstrom]
-tags: ["HotSpot", "JFR", "Flight Recorder", "CPU load"]
-image: /images/cpu-load-monitor-img/alex-motoc-P43VRz8fLWs-unsplash.jpg
-draft: true
+tags: ["HotSpot", "JFR"]
+image: /images/cpu-load-monitor-img/alex-motoc-P43VRz8fLWs-unsplash-thumb.jpg
+category: java
+draft: false
 blog_date: 2024-06-02
 ---
 <br>
@@ -131,6 +132,7 @@ The [Javadoc for getSystemCpuLoad](https://docs.oracle.com/javase/8/docs/jre/api
 
 `double getSystemCpuLoad()`
 : Returns the "recent cpu usage" for the whole system. This value is a double in the [0.0,1.0] interval. A value of 0.0 means that all CPUs were idle during the recent period of time observed, while a value of 1.0 means that all CPUs were actively running 100% of the time during the recent period being observed. All values betweens 0.0 and 1.0 are possible depending of the activities going on in the system. If the system recent cpu usage is not available, the method returns a negative value.
+
 Returns:
 : the "recent cpu usage" for the whole system; a negative value if not available.
 

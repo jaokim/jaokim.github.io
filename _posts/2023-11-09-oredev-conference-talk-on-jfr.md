@@ -4,7 +4,8 @@ title: Øredev conference talk on JFR
 excerpt: 'I presented my programmers guide to JFR at Øredev in November 2023'
 author: [JoakimNordstrom]
 tags: ["Conference", "JFR"]
-image: /images/oredev-conference-talk-on-jfr-img/oredev-2023-11-04.png
+category: java
+image: /images/oredev-conference-talk-on-jfr-img/oredev-2023-11-04-thumb.png
 blog_date: 2023-11-09
 ---
 

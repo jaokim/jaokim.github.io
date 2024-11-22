@@ -3,10 +3,11 @@ layout: post
 redirect_url: 
 title: '"Failed to write core dump"'
 author: [JoakimNordstrom]
-tags: ["HotSpot", "Serviceability"]
+tags: HotSpot
 type: text
+category: java
 excerpt: 'Sometimes when the JVM crashes, it tells us it failed to write core dump. This is however not the cause for the crash...'
-image: /images/failed-writing-core-dump/david-libeert-aGxAsacQ1LY-unsplash.jpg
+image: /images/failed-writing-core-dump/david-libeert-aGxAsacQ1LY-unsplash-thumb.jpg
 ---
 <style>
 	table td {

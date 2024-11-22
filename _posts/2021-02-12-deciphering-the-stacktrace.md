@@ -3,8 +3,9 @@ layout: post
 title: Deciphering the stack trace
 excerpt: 'When investigating the causes for a JVM crash, it is important to understand the crashlog, and the stack trace. Correctly interpreting the stack frames can give us valuable information on what has happened…'
 author: [JoakimNordstrom]
-tags: ["HotSpot", "Serviceability"]
-image: /images/deciphering-the-stacktrace/pine-watt-3_Xwxya43hE-unsplash.jpg
+tags: HotSpot
+category: java
+image: /images/deciphering-the-stacktrace/pine-watt-3_Xwxya43hE-unsplash-thumb.jpg
 ---
 
 
