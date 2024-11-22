@@ -3,7 +3,7 @@ layout: post
 title: Inside the Java Dumpster
 excerpt: 'A Workshop on JVM Troubleshooting'
 author: [JoakimNordstrom]
-tags: ["workshop", "HotSpot", "JFR"]
+tags: ["Workshop", "HotSpot", "JFR"]
 category: java
 image: /images/inside-the-java-dumpster-img/kevin-butz-FvFuMYVbhzE-thumb.png
 blog_date: 2024-03-11
