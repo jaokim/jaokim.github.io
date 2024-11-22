@@ -5,7 +5,7 @@ excerpt: 'A quick guide on the JDK Flight Recorder options.'
 author: [JoakimNordstrom]
 toc: true
 tags: HotSpot JFR
-image: /images/using-the-jdk-flight-recorder-img/markus-spiske-gnhxvdGmGG8-unsplash.jpg
+image: /images/using-the-jdk-flight-recorder-img/markus-spiske-gnhxvdGmGG8-unsplash-thumb.png
 ---
 <style>
 div.jdkspecific {

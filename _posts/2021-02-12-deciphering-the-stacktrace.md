@@ -5,7 +5,7 @@ excerpt: 'When investigating the causes for a JVM crash, it is important to unde
 author: [JoakimNordstrom]
 tags: HotSpot
 category: java
-image: /images/deciphering-the-stacktrace/pine-watt-3_Xwxya43hE-unsplash-thumb.jpg
+image: /images/deciphering-the-stacktrace/pine-watt-3_Xwxya43hE-unsplash-thumb.png
 ---
 
 

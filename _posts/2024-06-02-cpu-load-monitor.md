@@ -5,7 +5,7 @@ title: CPU load monitor
 excerpt: 'Triggering events on high CPU load'
 author: [JoakimNordstrom]
 tags: ["HotSpot", "JFR"]
-image: /images/cpu-load-monitor-img/alex-motoc-P43VRz8fLWs-unsplash-thumb.jpg
+image: /images/cpu-load-monitor-img/alex-motoc-P43VRz8fLWs-unsplash-thumb.png
 category: java
 draft: false
 blog_date: 2024-06-02
