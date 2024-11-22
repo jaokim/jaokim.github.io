@@ -48,7 +48,14 @@ svg.svg-icon {
     padding: 0px;
 }
 
-index_excerpt {
+.index_article {
+    width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+}
+
+.index_excerpt {
     width: auto;
     align-content: baseline;
 }
