@@ -16,8 +16,6 @@ layout: default
       <div class="index_excerpt" width="65%">
       <h2>{{ post.title }}</h2>
       {{ post.excerpt }}
-      <br/> <small>{% for pcat in post.categories %}cs {{pcat}} {% endfor %} </small>
-      <br/> <small>{% for pcat in post.category %}ct {{pcat}} {% endfor %} </small>
       <br/><small><time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time></small>
       </div>
     </div>
