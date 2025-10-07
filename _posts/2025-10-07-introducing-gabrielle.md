@@ -4,6 +4,7 @@ title: Introducing Gabrielle
 excerpt: 'Gabrielle the ever present side-kick to Xena'
 author: [JoakimNordstrom]
 tags: ["Amiga", "Xena"]
+category: amiga
 draft: false
 blog_date: 2025-10-07
 ---

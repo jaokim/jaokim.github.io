@@ -4,7 +4,7 @@ title: Tags
 permalink: /tags
 ---
 
-{% for cat in site.categoriess %}
+{% for cat in site.categories %}
  <h2 id="{{ cat }}">{{ cat }}</h3>
   
  {% for tag in site.tags %}
