@@ -3,6 +3,7 @@ layout: post
 title: Introducing Gabrielle
 excerpt: 'Gabrielle is Xena's ever present side-kick'
 author: [JoakimNordstrom]
+category: amiga
 ---
 
 So I’ve been poking at Xena. I’ve had this idea for the longest to do something with the chip. The biggest obstacle has however been actually compiling anything that runs on it. On various occasions I’ve set up the Xmos developer environment, but it’s always been a cumbersome moving of files and it has just taken the energy away from actually trying out some stuff.
