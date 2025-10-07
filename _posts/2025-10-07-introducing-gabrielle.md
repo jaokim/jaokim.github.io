@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introducing Gabrielle
-excerpt: 'Gabrielle is Xena's ever present side-kick'
+excerpt: 'Gabrielle the ever present side-kick to Xena'
 author: [JoakimNordstrom]
 tags: ["amiga", "Xena"]
 category: amiga
@@ -13,7 +13,7 @@ So I’ve been poking at Xena. I’ve had this idea for the longest to do someth
 
 Now, however, finally I’ve managed to get something working. Introducing Gabrielle! It’s Xena's companion, always there to help! It’s basically a script that sends off the files to compile to a compilation server. The compilation server in turn — aptly named Sai — collects the source files and compiles them into a xe binary, ready to be run with the XRunXE command.
 
-So in order to compile and run the wiggle demo in the Xena demo drawer (usually SYYs:Utilities/Xena), you just have to do this:
+So in order to compile and run the wiggle demo in the Xena demo drawer (usually SYS:Utilities/Xena), you just have to do this:
 
 ```
 1.> gabrielle TARGET=wiggle.xe wiggle.xc
