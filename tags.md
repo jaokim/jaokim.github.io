@@ -5,7 +5,7 @@ permalink: /tags
 ---
 
 {% for cat in site.categories %}
- <h2 id="{{ cat }}">{{ cat }}</h3>
+ <h2 id="{{ cat[0] }}">{{ cat[0] }}</h3>
   
  {% for tag in site.tags %}
   <h3 id="{{ tag[0] }}">{{ tag[0] }}</h3>
