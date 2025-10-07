@@ -7,7 +7,7 @@ layout: default
   {% if post.draft %}
     {% continue %}
   {% endif %}
-  {% if post.category contains "amiga" %}
+  {% if post.categories contains "amiga" %}
     {% continue %}
   {% endif %}
   <article >
