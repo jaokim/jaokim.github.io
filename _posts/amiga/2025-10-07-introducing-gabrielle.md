@@ -3,8 +3,6 @@ layout: post
 title: Introducing Gabrielle
 excerpt: 'Gabrielle is Xena's ever present side-kick'
 author: [JoakimNordstrom]
-category: amiga
-draft: true
 ---
 
 So I’ve been poking at Xena. I’ve had this idea for the longest to do something with the chip. The biggest obstacle has however been actually compiling anything that runs on it. On various occasions I’ve set up the Xmos developer environment, but it’s always been a cumbersome moving of files and it has just taken the energy away from actually trying out some stuff.
@@ -13,12 +11,12 @@ Now, however, finally I’ve managed to get something working. Introducing Gabri
 
 So in order to compile and run the wiggle demo in the Xena demo drawer (usually SYYs:Utilities/Xena), you just have to do this:
 
-‘’’
+```
 1.> gabrielle TARGET=wiggle.xe wiggle.xc
 xcc wiggle.xc
 Saved as wiggle.xe
 1.> XRunXE wiggle.xe
-‘’’
+```
 
 I've assembled the script along with a console that allows you to do some experimenting. Basically just download the archive, unpack and test the GabriShell console.
 
