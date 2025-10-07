@@ -3,6 +3,7 @@ layout: post
 title: Introducing Gabrielle
 excerpt: 'Gabrielle is Xena's ever present side-kick'
 author: [JoakimNordstrom]
+tags: ["amiga", "Xena"]
 category: amiga
 ---
 
