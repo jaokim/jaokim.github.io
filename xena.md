@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Tags
-permalink: /tags
+title: Xena
+permalink: /amiga/xena
 ---
 
  <h2>Xena</h2>
