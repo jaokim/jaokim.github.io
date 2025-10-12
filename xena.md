@@ -9,7 +9,7 @@ permalink: /amiga/xena
 {% for tag in site.tags %}
   <ul>
      {% for post in tag[1] %}
-       {% if post.tag contains "xena" %}
+       {% if post.tag contains "Xena" %}
        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
        {% endif %}
      {% endfor %}
