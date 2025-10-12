@@ -4,14 +4,13 @@ title: Xena
 permalink: /amiga/xena
 ---
 
- <h2>Xena</h2>
 
 {% for tag in site.tags %}
   <ul>
+    {% if tag[0] contains "Xena" %}
      {% for post in tag[1] %}
-       {% if post.tag contains "Xena" %}
        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-       {% endif %}
-     {% endfor %}
+       {% endfor %}
+     {% endif %}
   </ul>
 {% endfor %}
