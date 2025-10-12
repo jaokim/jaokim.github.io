@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xena
-permalink: /amiga/xena
+permalink: /xena
 ---
 
 

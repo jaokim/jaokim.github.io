@@ -24,9 +24,18 @@ Saved as wiggle.xe
 
 I've assembled the script along with a console that allows you to do some experimenting. Basically just download the archive, unpack and test the GabriShell console.
 
+<br>
+  <p align="center">
+    <img alt="" 
+         src="/images/amiga/xena-img/gabrishell.png" 
+         style="box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);" />
+  </p>
+<br>
+
+
 If you want to develop in your environment, Gabrielle sits happy in your path and can be invoked from a Makefile.
 
-
+You can download the archive <a href="https://jaokim.github.io/files/gabrielle.lha">here</a>.
 
 
 
