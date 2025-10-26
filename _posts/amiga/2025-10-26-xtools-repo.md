@@ -8,7 +8,8 @@ category: amiga
 draft: false
 ---
 
-The XTools that are in `SYS:Utilities/Xena` were originally written by Segher Boessenkool and then adapted to AmigaOS 4 by Lyle Hazelwood. The sources are supplied in the drawer, but I've also added them to [sourceforge.net/p/xena-xtools](https://sourceforge.net/p/xena-xtools).
+The XTools that are in `SYS:Utilities/Xena` were originally written by Segher Boessenkool and then adapted to AmigaOS 4 by Lyle Hazelwood. The sources are supplied in the drawer, but I've also added them to an SVN repo at sourceforge:
+* [sourceforge.net/p/xena-xtools](https://sourceforge.net/p/xena-xtools).
 
 <br>
   <p align="center">
@@ -44,5 +45,10 @@ The same error has been spotted on the X5000, even when XTools are built with th
 
 ## Future improvements
 
-I have som ideas for future improvements, and having the soruces in a repository should hopefully help with keeping track of that. First thing I'd like to get is support for the X5000.
+I have som ideas for future improvements, and having the sources in a repository should hopefully help with keeping track of that. First thing I'd like to get is support for the X5000.
+
+Suggestions and fixes are welcome! 
+
+
+
 
