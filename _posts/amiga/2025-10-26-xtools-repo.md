@@ -13,7 +13,7 @@ The XTools that are in `SYS:Utilities/Xena` were originally written by Segher Bo
 <br>
   <p align="center">
     <img alt=""
-         src="/images/amiga/xtools-repo/xtools.png"
+         src="/images/amiga/xtools-repo-img/xtools.png"
          style="box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);" />
   </p>
 <br>
