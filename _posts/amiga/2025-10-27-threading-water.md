@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Treading in the Xena threading waters
+title: Threading in the Xena waters
 excerpt: 'How can we see what Xena is up to?'
 author: [JoakimNordstrom]
 tags: ["Xena"]
