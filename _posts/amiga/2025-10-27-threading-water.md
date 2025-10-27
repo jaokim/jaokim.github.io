@@ -6,7 +6,6 @@ author: [JoakimNordstrom]
 tags: ["Xena"]
 category: amiga
 draft: false
-blog_date: 2025-10-27
 ---
 
 In order to understand some of what Xena is up to, in the Gabrielle Examples I've add a `utils.h` include with a `DEBUG` function. The idea is to use one of Xena's registers to keep track of the chip's action, and then to utilise the `XRegs` command to monitor it. This is like a poor-mans way to transfer data from Xena to AmigaOS.
