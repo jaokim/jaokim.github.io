@@ -35,13 +35,13 @@ I've so far done a few minor fixes, for instance when there was an error it some
 
 ### Only builds with SDK 53.24
 
-In normal circumstances there are no errors, so it's not major thing. However, the error always shows up if you build the XTools with a newer SDK. I've found that you need to have SDK 53.24 in order to build and also run the XTools. Because even if the sources compiles with a later SDK, when you run it, you'll get the `chain too long` error.
+In normal circumstances there are no errors, so it's not major thing. However, the error always shows up if you build the XTools with a newer SDK. I've found that you need to have SDK 53.24 in order to build and also run the XTools. Because even if the sources compiles with a later SDK, when you run it, you'll get the `chain too long` error. *
 
 SDK 53.24 is still downloadable from Hyperions website.
 
 ### Doesn't run on X5000?
 
-The same error has been spotted on the X5000, even when XTools are built with the correct SDK. I don't know the reason for this; I also don't own a X5000, so testing is difficult. I will investigate further and also file a bug report.
+The same error has been spotted on the X5000, even when XTools are built with the correct SDK. I don't know the reason for this; I also don't own a X5000, so testing is difficult. I will investigate further and also file a bug report. **
 
 ## Future improvements
 
@@ -50,5 +50,6 @@ I have som ideas for future improvements, and having the sources in a repository
 Suggestions and fixes are welcome! 
 
 
-
+## Addendum
+_After some further investigations it seems that the latest SDK's GCC does some optimisations that makes the writes to JTAG not work. So, just disabling optimisations with `-O0` will make it work on latest SDK. This is for XTools v1.1. Since XTools 1.6 it seems to work even with optmisation level 2 -- probably thanks to the added abstraction to support X5000. Which brings me to the X5000 suppport, which doesn't work currently (version 1.6) due that JTAG is implemented totally differently on X5000._
 
