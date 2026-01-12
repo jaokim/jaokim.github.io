@@ -37,7 +37,7 @@ If we repeat the `XRegs` command the value in `r9` should increase.
 
 This fiddling with registers is a bit hackish. The `DEBUG` define does try to tell the compiler to not overwrite the value in the register, but it seems to not always comply with this (since we're not doing anything with the register the compiler might optimize these things out and use the register for other stuff -- not unlikely there are better ways to solve this). I've noticed that if you use the lower registers (`r0`, `r1` etc) they can get clobbered with other values when viewed with `XRegs`. It also depends on what you actually do in the function -- if you use more variables you'll have fewer registers to play with.
 
-So in short, do not over-use it, but its good to have when experimenting.
+So in short, do not over-use it, but it's good to have when experimenting.
 
 ## More registers
 
