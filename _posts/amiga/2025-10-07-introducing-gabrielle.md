@@ -35,7 +35,7 @@ I've assembled the script along with a console that allows you to do some experi
 
 If you want to develop in your environment, Gabrielle sits happy in your path and can be invoked from a Makefile.
 
-You can download the archive <a href="https://jaokim.github.io/files/gabrielle.lha">here</a>.
+You can download the archive <a href="https://os4depot.net/?function=showfile&file=development/misc/gabrielle.lha">from os4depot</a>.
 
 
 
