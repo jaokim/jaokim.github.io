@@ -50,6 +50,7 @@ I have som ideas for future improvements, and having the sources in a repository
 Suggestions and fixes are welcome! 
 
 
+
 ## Addendum
 _After some further investigations it seems that the latest SDK's GCC does some optimisations that makes the writes to JTAG not work. So, just disabling optimisations with `-O0` will make it work on latest SDK. This is for XTools v1.1. Since XTools 1.6 it seems to work even with optmisation level 2 -- probably thanks to the added abstraction to support X5000. Which brings me to the X5000 suppport, which doesn't work currently (version 1.6) due that JTAG is implemented totally differently on X5000._
 
