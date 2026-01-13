@@ -109,7 +109,8 @@ Which will then show that it's been working on incrementing the `0x100000` value
 
 ## Two way communication
 
-I've also worked on another XTool to allow us to _set_ a register from the AmigaOS side (might pop up in the [XTools repo](https://jaokim.github.io/2025/10/26/xtools-repo.html)). As mentioned, this fiddling with registers is really a crude way of "communicating" with Xena. We're taking advantage of the JTAG connection we have, and JTAG is really just a protocol for debugging. So we can't expect and higher speeds. There is the localbus connection that was supposed to be used for faster communication, but that didn't quite work as planned on the X1000. I'll try and summarize this in a future blog post. None the less, with the XTAG and the XTools we do have means to communicate with Xena from AmigaOS. And, if amigans could use the clock port on the Amiga 1200 to create USB cards, then surely we can allow ourselves to use JTAG for... well something!
+I've also worked on another XTool to allow us to _set_ a register from the AmigaOS side (might pop up in the [XTools repo](https://jaokim.github.io/amiga/2025/10/26/xtools-repo.html)). As mentioned, this fiddling with registers is really a crude way of "communicating" with Xena. We're taking advantage of the JTAG connection we have, and JTAG is really just a protocol for debugging. So we can't expect and higher speeds. There is the localbus connection that was supposed to be used for faster communication, but that didn't quite work as planned on the X1000. I'll try and summarize this in a future blog post. None the less, with the XTAG and the XTools we do have means to communicate with Xena from AmigaOS. And, if amigans could use the clock port on the Amiga 1200 to create USB cards, then surely we can allow ourselves to use JTAG for... well something!
+
 
 
 
