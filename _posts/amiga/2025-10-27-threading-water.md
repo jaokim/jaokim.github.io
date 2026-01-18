@@ -23,7 +23,7 @@ void my_thread(int value) {
 }
 ```
 
-If we compile and execute this, we can with `XRegs` see what that `r9` register holds.
+If we compile and execute this we can with `XRegs` see what that `r9` register holds.
 
 <br>
   <p align="center">
