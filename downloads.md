@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Files
-permalink: /amiga/files
+permalink: downloads
 ---
 
 ## Files
