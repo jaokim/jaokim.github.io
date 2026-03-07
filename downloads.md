@@ -12,3 +12,7 @@ You've been warned.
 
 <a href="files/XTools-1.7g.lha">XTools-1.7g.lha</a>
 <a href="files/XTools-1.7h.lha">XTools-1.7h.lha</a>
+<a href="files/XTools-1.7j.lha">XTools-1.7j.lha</a>
+<a href="files/XTools-1.7j.lha">XTools-1.7j.lha</a>
+<a href="files/XTools-1.7j.lha">XTools-1.7j.lha</a>
+<a href="files/XTools-1.7j.lha">XTools-1.7j.lha</a>
