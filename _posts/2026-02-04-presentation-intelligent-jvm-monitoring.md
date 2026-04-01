@@ -19,7 +19,7 @@ blog_date: 2026-02-04
   </p>
 <br>
 
-This is a talk me and my collegaue Yağmur Eren gave at <a href="http://www.jfokus.se">Jfokus</a> in february 2026. The talk was well-received and actually ended up on the top 12 list of talks!
+This is a talk I and my collegaue Yağmur Eren gave at <a href="http://www.jfokus.se">Jfokus</a> in february 2026. The talk was well-received and actually ended up on the top 12 list of talks!
 
 You can find the talk with slides on the <a href="https://www.jfokus.se/talks.html?showid=3044">Jfokus page</a>, and the recording is also on the <a href="https://www.youtube.com/watch?v=z8mDLU8RCUU">Java YouTube channel</a>.
 
