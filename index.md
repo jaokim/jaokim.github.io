@@ -16,7 +16,12 @@ layout: default
       <div class="index_excerpt" width="65%">
       <h2>{{ post.title }}</h2>
       {{ post.excerpt }}
-      <br/><small><time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time></small>
+      {% if page.blog_date %}
+            <br/><small><time datetime="{{ post.blog_date | date: "%Y-%m-%d" }}">{{ post.blog_date | date_to_long_string }}</time></small>
+      {% else %}
+            <br/><small><time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time></small>
+      {% endif %}
+      
       </div>
     </div>
     <hr>
