@@ -3,7 +3,7 @@ layout: post
 title: Presentation: Intelligent JVM Monitoring: Combining JDK Flight Recorder with AI
 excerpt: 'How to combine JFR and JMX with AI to create an intelligent JVM monitor. A talk given at Jfokus 2026'
 author: [JoakimNordstrom]
-image: /images/presentation-intelligent-jvm-monitoring-img/jfokus-2026-01-thumb.jpg
+image: /images/presentation-intelligent-jvm-monitoring-img/jfokus-2026-01-thumb.png
 category: java
 tags: ["Conference", "JFR"]
 draft: false
