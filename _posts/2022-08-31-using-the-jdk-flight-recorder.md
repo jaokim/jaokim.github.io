@@ -208,7 +208,7 @@ $ jcmd <pid> JFR.stop name=rec
          src="/images/using-the-jdk-flight-recorder-img/recordings-1.png" 
          width="100%"/>
   <br>
-    <span>Conceptual image of a JVM process where a recording was started using JFR.start, and then written to file (rec1.jfr) with JFR.dump, and finally stopped with a final write to file (rec2.jfr).</span>
+    <span>Conceptual image of a JVM process where a recording was started using <code>JFR.start</code>, and then written to file (with <code>filename=rec1.jfr</code>) with <code>JFR.dump</code>, and finally stopped with a final write to file (<code>filename=rec2.jfr</code>).</span>
   </p>
 <br>
 
@@ -229,9 +229,6 @@ Below are some of the more commonly used, and important options:
 |        `delay` | Delay recording start with (s)econds, (m)inutes), (h)ours), or (d)ays, e.g. 5h.|
 |        `duration` | Duration of recording in (s)econds, (m)inutes, (h)ours, or (d)ays, e.g. 300s. |
 |       `dumponexit` | Dump running recording when JVM shuts down |
-|        `disk` | Temporary data should be persisted to disk |
-|        `maxage` | Maximum time to keep data on disk in (s)econds, (m)inutes, (h)ours, or (d)ays, e.g. 60m, or 0 for no limit|
-|        `maxsize` | Maximum amount of bytes to keep on disk in (k)B, (M)B or (G)B, e.g. 500M, or 0 for no limit |
 
 ## Starting a Flight Recording at JVM Startup
 A common use-case is to have a so-called default recording upon starting the JVM. The perks of this is you don't have to do anything manually, and you can have JFR dump a recording whenever the JVM decides to exit for whatever reason -- giving you ideas of what that "whatever" was.
@@ -292,17 +289,20 @@ Most options to `StartFlightRecording` can be recognized from the `JFR.start` co
 
 | Option      | Description                               | 
 | :---        |    :----                                  | 
-| name        | Optional name to identify the recording   | 
-| delay       | Start recording after a delay            | 
-| duration    | Only record for a certain time            | 
-| filename    | Filename where recording should be stored | 
-| disk    | Specifies whether to write temporary data to disk while recording                    | 
-| maxage    | Max age of temporary data stored to disk                  | 
-| maxsize    | Max size of temporary data stored to disk                   | 
+| `name`        | Optional name to identify the recording   | 
+| `delay`       | Start recording after a delay            | 
+| `duration`    | Only record for a certain time            | 
+| `filename`    | Filename where recording should be stored | 
 
 
 ## Some Often Misunderstood Options
-There are a few options that can cause confusion; the options `disk`, `maxage` and `maxsize`. Setting `disk` to true will make JFR store temporary data on disk instead of in-memory. Storing temporary data on disk will give you more data for the recording, as opposed to storing in-memory, since the default in-memory buffers are by default smaller. The two latter, `maxage` and `maxsize` are only used if `disk=true`. These settings control how much _temporary_ data JFR should store, they should *not* be used to "filter" the data. The `maxage` defines how long events are stored in the temporary directory; if you use `maxage=1h` you'd get data that is atleast 1 hour old. You could also get data older than 1 hour, if for instance the event fits within the chunks of 12 MB that JFR defaults to, or if the event is a long running event. Setting `maxsize` limits how much data is stored in the temporary directory, and with the default chunksize, it only makes sense to set it above 12 MB.
+| Option      | Description                               | 
+| :---        |    :----                                  | 
+| `disk`    | Specifies whether to keep temporary data on disk while recording. Setting to `false` will store data in memory.                     | 
+| `maxage`    | Max age of temporary data stored to disk                  | 
+| `maxsize`    | Max size of temporary data stored to disk                   | 
+
+There are a few options that can cause confusion; the options `disk`, `maxage` and `maxsize`. Setting `disk` to true will make JFR store temporary data on disk instead of in-memory (this option can't be changed after recording has started). Storing temporary data on disk will give you more data for the recording, as opposed to storing in-memory, since the default in-memory buffers are by default smaller. The two latter, `maxage` and `maxsize` are only used if `disk=true`. These settings control how much _temporary_ data JFR should store, they should *not* be used to "filter" the data. The `maxage` defines how long events are stored in the temporary directory; if you use `maxage=1h` you'd get data that is atleast 1 hour old. You could also get data older than 1 hour, if for instance the event fits within the chunks of 12 MB that JFR defaults to, or if the event is a long running event. Setting `maxsize` limits how much data is stored in the temporary directory, and with the default chunksize, it only makes sense to set it above 12 MB.
 
 If you want a recording for a limited time period, you should use the `duration`, and possibly `delay` option.
 
@@ -312,10 +312,10 @@ If you want a recording for a limited time period, you should use the `duration`
          src="/images/using-the-jdk-flight-recorder-img/deldur.png" 
          width="100%"/>
   <br>
-    <span>When setting `delay=5m`, and `duration=15m`, the recording will start after 5 minutes, and record for 15 minutes.</span>
+    <span>When setting <code>delay=5m</code>, and <code>duration=15m</code>, the recording will start after 5 minutes, and record for 15 minutes.</span>
   </p>
 
-For instance, if you issue the below `JFR.start` jcmd at 08:00, the `delay=4h` will make your recording start at 12:00, and `duration` will give you 15 minutes worth of JFR data in the `diagnosis.jfr` file. The `delay` option can also be used just to delay recording only a few seconds in order to get the JVM to "warm up", as to not record JVM internal processes such as JIT compilation, etc -- depending on your needs.
+For instance, if you issue the below `JFR.start` jcmd at 08:00, the `delay=4h` will make your recording start at 12:00, and `duration` will give you 15 minutes worth of JFR data in the `diagnosis.jfr` file. The `delay` option can also be used just to delay recording a few seconds in order to get the JVM to "warm up", as to not record JVM internal processes such as JIT compilation, etc -- depending on your needs.
 
 ```
 jcmd 27016 JFR.start delay=4h,duration=15m,filename=diagnosis.jfr
