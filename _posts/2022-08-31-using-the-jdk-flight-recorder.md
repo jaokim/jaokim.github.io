@@ -229,9 +229,9 @@ Below are some of the more commonly used, and important options:
 |        `delay` | Delay recording start with (s)econds, (m)inutes), (h)ours), or (d)ays, e.g. 5h.|
 |        `duration` | Duration of recording in (s)econds, (m)inutes, (h)ours, or (d)ays, e.g. 300s. |
 |       `dumponexit` | Dump running recording when JVM shuts down |
-|        `disk` | Recording should be persisted to disk |
-|        `maxage` | Maximum time to keep recorded data (on disk) in (s)econds, (m)inutes, (h)ours, or (d)ays, e.g. 60m, or 0 for no limit|
-|        `maxsize` | Maximum amount of bytes to keep (on disk) in (k)B, (M)B or (G)B, e.g. 500M, or 0 for no limit |
+|        `disk` | Temporary data should be persisted to disk |
+|        `maxage` | Maximum time to keep data on disk in (s)econds, (m)inutes, (h)ours, or (d)ays, e.g. 60m, or 0 for no limit|
+|        `maxsize` | Maximum amount of bytes to keep on disk in (k)B, (M)B or (G)B, e.g. 500M, or 0 for no limit |
 
 ## Starting a Flight Recording at JVM Startup
 A common use-case is to have a so-called default recording upon starting the JVM. The perks of this is you don't have to do anything manually, and you can have JFR dump a recording whenever the JVM decides to exit for whatever reason -- giving you ideas of what that "whatever" was.
