@@ -278,9 +278,9 @@ If you want to dump the recording at any other time, you can use the `JFR.dump` 
     alt="The default recording registers events from the beginning of the JVM startup, and these events can be saved to file using 'JFR.dump' and the default recording's name. Another recording can be started in parallel using 'JFR.start' and corresponding 'JFR.dump', or 'JFR.stop'. At JVM exit, the default recording is saved to disk, containing only as much data as defined by 'maxage' or 'maxsize'" 
          src="/images/using-the-jdk-flight-recorder-img/recordings-2.png" 
          width="100%"/>
-    <span>In this image a default recording is started when the JVM starts with the `StartFlightRecording` option. One can see that the default recording is active throughout the JVM's lifetime (from 00:01 to 00:27). <br/>
-    Somewhere in the middle we start another recording named "`rec`" (the yellowish blocks) for a shorter period, which we first dump to `rec1.jfr`, and then stops with a write to `rec2.jfr`. <br/>
-    After some time we also write the default recording to `def.jfr` using JFR.dump, and at the JVM exit, the default recording is written to `dump.jfr`</span>
+    <span>In this image a default recording is started when the JVM starts with the <code>StartFlightRecording</code> option. One can see that the default recording is active throughout the JVM's lifetime (from 00:01 to 00:27). <br/>
+    Somewhere in the middle we start another recording named <code>rec</code> (the yellowish blocks) for a shorter period, which we first dump to <code>rec1.jfr</code>, and then stops with a write to <code>rec2.jfr</code>. <br/>
+    After some time we also write the default recording to <code>def.jfr</code> using JFR.dump, and at the JVM exit, the default recording is written to <code>dump.jfr</code></span>
   <br>
   </p>
 <br>
@@ -296,9 +296,9 @@ Most options to `StartFlightRecording` can be recognized from the `JFR.start` co
 | delay       | Start recording after a delay            | 
 | duration    | Only record for a certain time            | 
 | filename    | Filename where recording should be stored | 
-| disk    | Specifies whether to write data to disk while recording.                    | 
-| maxage    | List of settings files                    | 
-| maxsize    | List of settings files                    | 
+| disk    | Specifies whether to write temporary data to disk while recording                    | 
+| maxage    | Max age of temporary data stored to disk                  | 
+| maxsize    | Max size of temporary data stored to disk                   | 
 
 
 ## Some Often Misunderstood Options
