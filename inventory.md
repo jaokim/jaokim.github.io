@@ -1,3 +1,8 @@
+---
+layout: post
+title: Inventory
+permalink: /inventory
+---
 |    Name    | Number |                Description                |
 |------------|--------|-------------------------------------------|
 | 74LS125    | 2      | Quadruple Bus Buffers With 3-State Output |
