@@ -16,7 +16,7 @@
 title: jaokim's blog
 email: joakim.nordstrom@oracle.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Software developer working on the JVM
+  Software developer with a soft spot for JVM internals, Amiga and generally old electronics.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jaokim.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  jaokim
